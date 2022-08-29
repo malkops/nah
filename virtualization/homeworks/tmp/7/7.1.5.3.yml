@@ -1,0 +1,29 @@
+---
+- hosts: all
+  vars:
+    greet: |
+      #!/bin/bash
+      printf "\033[33mРеально удобно, реально под себя"
+  tasks:
+    - name: Change permissions
+      ansible.builtin.file:
+        path: /etc/update-motd.d/
+        mode: '400'
+        recurse: yes
+        state: directory
+    - name: Change directory permissions
+      ansible.builtin.file:
+        path: /etc/update-motd.d
+        mode: '755'
+        state: touch
+    - name: Create greeting
+      ansible.builtin.file:
+        path: /etc/update-motd.d/05-custom-greet
+        mode: '755'
+        state: touch
+        owner: root
+        group: root
+    - name: Write greet
+      ansible.builtin.lineinfile:
+        path: /etc/update-motd.d/05-custom-greet
+        line: '{{ greet }}'

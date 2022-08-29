@@ -1,0 +1,12 @@
+---
+- hosts: all
+  tasks:
+    - name: Install tuned
+      ansible.builtin.apt:
+        name: neofetch
+
+    - name: Run tuned like a daemon and enable it
+      ansible.builtin.systemd:
+        name: tuned
+        enabled: yes
+        state: started
