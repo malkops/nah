@@ -1,0 +1,36 @@
+---
+- name: Fa
+  gather_facts: False
+  setup:
+    filter: ansible_processor
+
+      #- name: Install Apache
+      #  become: yes
+      #  apt:
+      #    name: apache2
+      #    state: present
+      #    update_cache: yes
+
+      #- name: Remove default html
+      #  file:
+      #    name: "/var/www/html/index.html"
+      #    state: absent
+
+      #- name: Copy index test page
+      #  template:
+      #    src: "files/index.html.j2"
+      #    dest: "/var/www/html/index.html"
+
+      #- name: Reload Apache
+      #  service:
+      #    name: apache2
+      #    state: reloaded
+
+      #- name: Check if host is reachable
+      #  shell:
+      #    cmd: "/usr/bin/curl --connection-timeout 10 --silent --show-error remote.host:8080"
+      #    warn: no
+      #    executable: /bin/bash
+      #    register: res
+      #    failed_when: res.rc in [28] or res.srderr is search("No route to host")
+

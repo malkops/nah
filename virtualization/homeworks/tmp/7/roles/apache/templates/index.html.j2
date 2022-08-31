@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ ansible_hostname }}</title>
+</head>
+<body>
+  <h2>IP</h2>
+  {% for ip in ansible_all_ipv4_addresses %}
+    <p>{{ ip }}</p> 
+  {% endfor %}
+  
+  <h2>CPU info</h2>
+  <p>{{ ansible_processor[2] }}</p>
+  
+  <h2>RAM total memory</h2>
+  <p>{{ ansible_memtotal_mb }}mb</p>
+  
+  <h2>HDD info</h2>
+  {% for disk in ansible_devices %}
+    <span>{{ disk }} -- size: {{ ansible_devices[disk].size }}
+    <br>
+  {% endfor %}
+
+  
+</body>
+</html>

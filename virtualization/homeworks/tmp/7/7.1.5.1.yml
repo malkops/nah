@@ -1,0 +1,19 @@
+---
+- hosts: all
+  tasks:
+    - name: Download archive
+      ansible.builtin.get_url:
+        url: https://downloads.apache.org/kafka/3.2.1/kafka-3.2.1-src.tgz
+        dest: ~/arch.tgz
+        mode: '770'
+
+    - name: Ensure directory exist
+      ansible.builtin.file:
+        path: ~/unp/
+        state: directory
+
+    - name: Extract archive
+      ansible.builtin.unarchive:
+        src: ~/arch.tgz
+        remote_src: yes
+        dest: ~/unp/

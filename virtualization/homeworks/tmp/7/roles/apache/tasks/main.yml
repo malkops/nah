@@ -1,0 +1,32 @@
+---
+- name: update apt
+  apt: 
+    update_cache: yes
+- name: install apache
+  apt:
+    name: "apache2"
+    state: latest
+- name: create custom document root
+  file:
+    path: "{{ doc_root }}"
+    state: directory
+    owner: www-data
+    group: www-data
+- name: set up html file
+  template:
+    src: index.html.j2
+    dest: "{{ doc_root }}/index.html"
+    owner: www-data
+    group: www-data
+    mode: 0644
+- name: Set up virtual host file
+  template:
+    src: vhost.j2
+    dest: /etc/apache2/sites-available/000-default.conf
+- name: restart apache
+  service:
+    name: apache2
+    state: restarted
+- name: check status code 200
+  uri:
+    url: "http://127.0.0.1"
