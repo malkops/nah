@@ -1,0 +1,27 @@
+#- hosts: vm1
+#  remote_user: user
+#  become: yes
+#  become_method: sudo
+#  tasks:
+#    - name: install nginx
+#      apt:
+#        name: nginx
+#        state: latest
+#    - name: running nginx
+#      systemd:
+#        name: nginx
+#        state: started
+#
+- hosts: vm2
+  remote_user: user
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: instal mariadb
+      apt:
+        name: mariadb-server
+        state: latest
+    - name: running mariadb
+      systemd:
+        name: mariadb
+        state: started
