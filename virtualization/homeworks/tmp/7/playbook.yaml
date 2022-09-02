@@ -1,6 +1,0 @@
----
-- name: test-role
-  hosts: servers
-  become: yes
-  roles:
-    - apache
