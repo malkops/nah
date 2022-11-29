@@ -1,0 +1,137 @@
+cat pb.yaml
+---
+- name: Install RabbitMQ
+  hosts: yc
+  become: True
+  tasks:
+    - name: Install requirement packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - curl
+        - gnupg
+        - apt-transport-https
+
+    - name: RabbitMQ main signing key
+      apt_key:
+        url: https://keys.openpgp.org/vks/v1/by-fingerprint/0A9AF2115F4687BD29803A206B73A36E6026DFCA
+        keyring: /usr/share/keyrings/com.rabbitmq.team.gpg
+
+    - name: Erlang releases
+      apt_key:
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xf77f1eda57ebb1cc
+        keyring: /usr/share/keyrings/net.launchpad.ppa.rabbitmq.erlang.gpg
+
+    - name: PackageCloud rabbitMQ repository
+      apt_key:
+        url: https://packagecloud.io/rabbitmq/rabbitmq-server/gpgkey
+        keyring: /usr/share/keyrings/io.packagecloud.rabbitmq.gpg
+
+    - name: Provide repositories
+      shell: |
+               tee /etc/apt/sources.list.d/rabbitmq.list <<EOF
+               deb [signed-by=/usr/share/keyrings/net.launchpad.ppa.rabbitmq.erlang.gpg] http://ppa.launchpad.net/rabbitmq/rabbitmq-erlang/ubuntu jammy main
+               deb-src [signed-by=/usr/share/keyrings/net.launchpad.ppa.rabbitmq.erlang.gpg] http://ppa.launchpad.net/rabbitmq/rabbitmq-erlang/ubuntu jammy main
+               deb [signed-by=/usr/share/keyrings/io.packagecloud.rabbitmq.gpg] https://packagecloud.io/rabbitmq/rabbitmq-server/ubuntu/ jammy main
+               deb-src [signed-by=/usr/share/keyrings/io.packagecloud.rabbitmq.gpg] https://packagecloud.io/rabbitmq/rabbitmq-server/ubuntu/ jammy main
+               EOF
+
+    - name: Update packages
+      apt:
+        update_cache: True
+
+    - name: Install Erlang packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - erlang-base
+        - erlang-asn1
+        - erlang-crypto
+        - erlang-eldap
+        - erlang-ftp
+        - erlang-inets
+        - erlang-mnesia
+        - erlang-os-mon
+        - erlang-parsetools
+        - erlang-public-key
+        - erlang-runtime-tools
+        - erlang-snmp
+        - erlang-ssl
+        - erlang-syntax-tools
+        - erlang-tftp
+        - erlang-tools
+        - erlang-xmerl
+
+    - name: Install RabbitMQ
+      apt:
+        name: rabbitmq-server
+        state: present
+
+    - name: Make sure RabbitMQ app is up
+      shell: rabbitmqctl start_app
+
+    - name: Enable RaddisMQ management plagin
+      rabbitmq_plugin:
+        names: rabbitmq_management
+        state: enabled
+
+    - name: Add RabbitMQ user
+      rabbitmq_user:
+        state: present
+        user: admin
+        password: admin
+        tags: administrator
+        vhost: /
+        configure_priv: .*
+        read_priv: .*
+        write_priv: .*
+
+    - name: Create ha-all policy
+      rabbitmq_policy:
+        name: ha-all
+        pattern: .*
+        tags:
+          ha-mode: all
+
+    - name: Set cookie
+      copy:
+        content: "123qwecookie"
+        dest: /var/lib/rabbitmq/.erlang.cookie
+        owner: rabbitmq
+        group: rabbitmq
+        mode: '0600'
+
+    - name: Restarting RabbitMQ
+      systemd:
+        state: restarted
+        service: rabbitmq-server
+
+- name: Update /etc/hosts
+  hosts: yc
+  become: True
+  tasks:
+  - name: update
+    blockinfile:
+      path: /etc/hosts
+      create: yes
+      block: |
+        127.0.0.1 localhost
+        ::1 ip6-localhost
+        {% for item in ansible_play_batch %}
+        {{ hostvars[item].ansible_host }} {{ item }}
+        {% endfor %}
+
+- name: Join replicas in cluster
+  hosts: replicas
+  become: True
+  tasks:
+  - name: Stop RabbitMQ app
+    command: rabbitmqctl stop_app
+  - name: Reseting node
+    command: rabbitmqctl reset
+  - name: Join cluster
+    command: rabbitmqctl join_cluster rabbit@{{ groups.master[0] }}
+  - name: Start RabbitMQ app
+    command: rabbitmqctl start_app

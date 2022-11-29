@@ -1,0 +1,9 @@
+[yc:children]
+master
+replicas
+
+[master]
+master_hostname ansible_host=master_ip
+
+[replicas]
+replica1_hostname ansible_host=replica1_ip
