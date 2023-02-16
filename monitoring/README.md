@@ -10,4 +10,4 @@
 
 9.4. [Prometheus](https://github.com/guillotine666/nah/blob/master/monitoring/notes/9-4.md) + [Практика](https://github.com/guillotine666/nah/blob/master/monitoring/homeworks/9-04.md)
 
-9.5. [Prometheus 2](https://github.com/guillotine666/nah/blob/master/monitoring/notes/9-5.md) + [Практика](https://github.com/guillotine666/nah/blob/master/monitoring/homeworks/9-05.md)
+9.5. [Prometheus 2](https://github.com/guillotine666/nah/blob/master/monitoring/notes/9-4.md) + [Практика](https://github.com/guillotine666/nah/blob/master/monitoring/homeworks/9-05.md)
