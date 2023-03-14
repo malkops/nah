@@ -29,6 +29,29 @@ _**На мой взгляд, push метод более надёжный, так
 
 *Приложите вывод команд установленных версий каждой из программ, оформленный в Markdown.*
 
+```zsh
+a@pop-os ~/netology/nah % ansible --version
+ansible [core 2.14.1]
+  config file = None
+  configured module search path = ['/home/a/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /home/a/.local/lib/python3.10/site-packages/ansible
+  ansible collection location = /home/a/.ansible/collections:/usr/share/ansible/collections
+  executable location = /home/a/.local/bin/ansible
+  python version = 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0] (/usr/bin/python3)
+  jinja version = 3.0.3
+  libyaml = True
+
+a@pop-os ~/netology/nah % terraform -v
+Terraform v1.4.0
+on linux_amd64
+
+a@pop-os ~/netology/nah % vagrant -v
+Vagrant 2.2.19
+
+a@pop-os ~/netology/nah % vboxmanage --version
+6.1.36_Ubuntur152435
+```
+
 ## Задача 4 
 
 Воспроизведите практическую часть лекции самостоятельно.
