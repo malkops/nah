@@ -59,7 +59,10 @@ a@pop-os ~/netology/nah % vboxmanage --version
 - Создайте виртуальную машину.
 - Зайдите внутрь ВМ, убедитесь, что Docker установлен с помощью команды
 
-```
-docker ps
-```
+```zsh
+vagrant@server1:~$ docker -v
+Docker version 23.0.1, build a5ee5b1
 
+vagrant@server1:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+```
