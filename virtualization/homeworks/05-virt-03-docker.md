@@ -48,6 +48,17 @@ https://hub.docker.com/r/malkops/test-nginx
 - Добавьте ещё один файл в папку ```/data``` на хостовой машине.
 - Подключитесь во второй контейнер и отобразите листинг и содержание файлов в ```/data``` контейнера.
 
+```bash
+docker pull debian
+docker pull centos
+mkdir data/
+docker run -v ./data:/data --name centos -w /data -td centos
+docker run -v ./data:/data --name debian -w /data -td debian
+echo "file content" | tee file
+```
+
+![image_2023-03-22_17-12-55](https://user-images.githubusercontent.com/44001733/226901888-39c36052-ed9d-4f02-8419-a823f36f922c.png)
+
 ## Задача 4 (*)
 
 Воспроизведите практическую часть лекции самостоятельно.
