@@ -55,6 +55,7 @@ docker pull centos
 mkdir data/
 docker run -v ./data:/data --name centos -w /data -td centos
 docker run -v ./data:/data --name debian -w /data -td debian
+vim data/host_file
 
 # centos container
 echo "file content" | tee file
@@ -62,10 +63,11 @@ exit
 
 # debian container
 cat file
+cat host_file
 #see result below
 ```
 
-![image_2023-03-22_17-12-55](https://user-images.githubusercontent.com/44001733/226901888-39c36052-ed9d-4f02-8419-a823f36f922c.png)
+![image_2023-03-23_00-09-31](https://user-images.githubusercontent.com/44001733/227011590-b750ee41-24ce-4d01-a110-59230de44d7c.png)
 
 ## Задача 4 (*)
 
