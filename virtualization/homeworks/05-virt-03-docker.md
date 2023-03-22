@@ -18,7 +18,7 @@ Hey, Netology
 </html>
 ```
 
-https://hub.docker.com/r/malkops/test-nginx
+https://hub.docker.com/r/malkops/test-nginx/tags
 
 ## Задача 2
 
@@ -65,4 +65,4 @@ echo "file content" | tee file
 
 Соберите Docker-образ с Ansible, загрузите на Docker Hub и пришлите ссылку вместе с остальными ответами к задачам.
 
-https://hub.docker.com/r/malkops/apline_with_ansible
+https://hub.docker.com/r/malkops/apline_with_ansible/tags
