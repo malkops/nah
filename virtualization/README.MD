@@ -12,4 +12,6 @@
 
 5.2. [Практика. DevOps - Применение принципов IaaC](https://github.com/malkops/nah/blob/master/virtualization/homeworks/05-virt-02-iaac.md)
 
-5.3. [Практика. DevOps - Оркестрация группой Docker-контейнеров на примере Docker Compose](https://github.com/malkops/nah/blob/master/virtualization/homeworks/05-virt-03-docker.md)
+5.3. [Практика. DevOps - Введение. Экосистема. Архитектура. Жизненный цикл Docker-контейнера](https://github.com/malkops/nah/blob/master/virtualization/homeworks/05-virt-03-docker.md)
+
+5.4. [Практика. DevOps - Оркестрация группой Docker-контейнеров на примере Docker Compose](https://github.com/malkops/nah/blob/master/virtualization/homeworks/05-virt-04-docker-compose.md)
