@@ -2,19 +2,53 @@
 
 Создайте собственный образ любой операционной системы (например ubuntu-20.04) с помощью Packer ([инструкция](https://cloud.yandex.ru/docs/tutorials/infrastructure-management/packer-quickstart)).
 
-Чтобы получить зачёт, вам нужно предоставить скриншот страницы с созданным образом из личного кабинета YandexCloud.
-
 ![image](https://user-images.githubusercontent.com/44001733/227514979-cd77b127-b6af-43f2-b59a-90cee8085e3c.png)
 
 ## Задача 2
 
 **2.1.** Создайте вашу первую виртуальную машину в YandexCloud с помощью web-интерфейса YandexCloud.        
 
+![image](https://user-images.githubusercontent.com/44001733/227516545-5c12395a-3dc3-4a34-8421-55997bfc4cbd.png)
+
 **2.2.*** **(Необязательное задание)**      
 Создайте вашу первую виртуальную машину в YandexCloud с помощью Terraform (вместо использования веб-интерфейса YandexCloud).
 Используйте Terraform-код в директории ([src/terraform](https://github.com/netology-group/virt-homeworks/tree/virt-11/05-virt-04-docker-compose/src/terraform)).
 
 Чтобы получить зачёт, вам нужно предоставить вывод команды terraform apply и страницы свойств, созданной ВМ из личного кабинета YandexCloud.
+
+![image](https://user-images.githubusercontent.com/44001733/227526843-dbfaf3dc-b59b-4ee2-9450-d761d24fd9e6.png)
+
+```terminal
+# some string
+
+Plan: 3 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + external_ip_address_node01_yandex_cloud = (known after apply)
+  + internal_ip_address_node01_yandex_cloud = (known after apply)
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+yandex_vpc_network.defaults: Creating...
+yandex_vpc_network.defaults: Creation complete after 1s [id=enp69kj6ss0n9l93c9ib]
+yandex_vpc_subnet.defaults: Creating...
+yandex_vpc_subnet.defaults: Creation complete after 2s [id=e9bulh345a3jvicg21qs]
+yandex_compute_instance.node01: Creating...
+yandex_compute_instance.node01: Still creating... [10s elapsed]
+yandex_compute_instance.node01: Still creating... [20s elapsed]
+yandex_compute_instance.node01: Creation complete after 25s [id=fhm4l41emj2fkj8s8jep]
+
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+external_ip_address_node01_yandex_cloud = "158.160.38.235"
+internal_ip_address_node01_yandex_cloud = "192.168.101.12"
+```
 
 ## Задача 3
 
