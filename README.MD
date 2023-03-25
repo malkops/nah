@@ -1,7 +1,3 @@
 # Practice in sysadmin and devops
 
-I'm using pycharm :--)
-Another conflict practice
-What A line
-client
-server
+I use this repo for notes and homeworks while learn DevOps
