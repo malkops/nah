@@ -74,3 +74,4 @@ file:///home/a/.var/app/org.telegram.desktop/data/TelegramDesktop/tdata/temp_dat
 
 - скриншот из Grafana, на котором будут отображаться метрики добавленного вами сервера.
 
+![image](https://user-images.githubusercontent.com/44001733/227713246-7138cfe6-1aaf-44e9-8ebb-a8c6b142fee4.png)
