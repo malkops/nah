@@ -55,7 +55,7 @@ internal_ip_address_node01_yandex_cloud = "192.168.101.12"
 С помощью Ansible и Docker Compose разверните на виртуальной машине из предыдущего задания систему мониторинга на основе Prometheus/Grafana.
 Используйте Ansible-код в директории ([src/ansible](https://github.com/netology-group/virt-homeworks/tree/virt-11/05-virt-04-docker-compose/src/ansible)).
 
-Чтобы получить зачёт, вам нужно предоставить вывод команды "docker ps" , все контейнеры, описанные в [docker-compose](https://github.com/netology-group/virt-homeworks/blob/virt-11/05-virt-04-docker-compose/src/ansible/stack/docker-compose.yaml),  должны быть в статусе "Up".
+file:///home/a/.var/app/org.telegram.desktop/data/TelegramDesktop/tdata/temp_data/image_2023-03-25_15-18-46.png![image](https://user-images.githubusercontent.com/44001733/227711596-786c93ea-8fca-4959-a286-30c5cbce6615.png)
 
 ## Задача 4
 
@@ -64,10 +64,7 @@ internal_ip_address_node01_yandex_cloud = "192.168.101.12"
 3. Изучите доступный интерфейс, найдите в интерфейсе автоматически созданные docker-compose-панели с графиками([dashboards](https://grafana.com/docs/grafana/latest/dashboards/use-dashboards/)).
 4. Подождите 5-10 минут, чтобы система мониторинга успела накопить данные.
 
-Чтобы получить зачёт, предоставьте: 
-
-- скриншот работающего веб-интерфейса Grafana с текущими метриками, как на примере ниже.
-
+![image](https://user-images.githubusercontent.com/44001733/227711580-e5b970d3-7352-445c-8cb2-02c77a98a583.png)
 
 ## Задача 5 (*)
 
