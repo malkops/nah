@@ -15,3 +15,5 @@
 5.3. [Практика. DevOps - Введение. Экосистема. Архитектура. Жизненный цикл Docker-контейнера](https://github.com/malkops/nah/blob/master/virtualization/homeworks/05-virt-03-docker.md)
 
 5.4. [Практика. DevOps - Оркестрация группой Docker-контейнеров на примере Docker Compose](https://github.com/malkops/nah/blob/master/virtualization/homeworks/05-virt-04-docker-compose.md)
+
+5.5. [Практика. DevOps - Оркестрация кластером Docker контейнеров на примере Docker Swarm](https://github.com/malkops/nah/blob/master/virtualization/homeworks/05-virt-05-docker-swarm.md)
