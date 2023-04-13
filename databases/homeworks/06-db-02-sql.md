@@ -186,4 +186,10 @@ EXPLAIN ANALYZE SELECT * FROM clients;
 
 Приведите список операций, который вы применяли для бэкапа данных и восстановления. 
 
+Для дампа:
 
+`pg_dumpall -c -U postgres > dump.sql`
+
+Для бэкапа:
+
+`cat dump.sql | docker exec -i pgsql-postgres-1 psql -U test-admin-user -d test_db`
