@@ -52,7 +52,7 @@ services:
 
 - описание таблиц (describe);
 
-![image](https://user-images.githubusercontent.com/44001733/231746926-f14ce0d6-eca1-408b-bf22-bc0466531e00.png)
+![image](https://user-images.githubusercontent.com/44001733/231751362-89a43419-0176-4652-93b1-4e05a450fdc5.png)
 
 - SQL-запрос для выдачи списка пользователей с правами над таблицами test_db;
 
@@ -97,6 +97,26 @@ WHERE table_name in ('orders', 'clients');
 
     - запросы,
     - результаты их выполнения.
+
+```sql
+INSERT INTO orders (name, price) VALUES 
+    ('Шоколад', 10), 
+    ('Принтер', 3000), 
+    ('Книга', 500), 
+    ('Монитор', 7000), 
+    ('Гитара', 4000);
+    
+>> INSERT 0 5
+
+INSERT INTO clients (surname, country) VALUES 
+    ('Иванов Иван Иванович', 'USA'), 
+    ('Петров Петр Петрович', 'Canada'), 
+    ('Иоганн Себастьян Бах', 'Japan'), 
+    ('Ронни Джеймс Дио', 'Russia'), 
+    ('Ritchie Blackmore', 'Russia');
+
+>> INSERT 0 5
+```
 
 ## Задача 4
 
