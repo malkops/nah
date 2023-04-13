@@ -188,7 +188,7 @@ EXPLAIN ANALYZE SELECT * FROM clients;
 
 Для дампа:
 
-`pg_dumpall -c -U postgres > dump.sql`
+`pg_dumpall -c -U test-admin-user > dump.sql`
 
 Для бэкапа:
 
