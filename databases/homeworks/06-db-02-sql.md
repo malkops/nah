@@ -132,9 +132,25 @@ INSERT INTO clients (surname, country) VALUES
 
 Приведите SQL-запросы для выполнения этих операций.
 
+```sql
+UPDATE clients SET order_id = "3" WHERE surname = 'Иванов Иван Иванович';
+UPDATE clients SET order_id = "4" WHERE surname = 'Петров Петр Петрович';
+UPDATE clients SET order_id = "5" WHERE surname = 'Иоганн Себастьян Бах';
+```
+
 Приведите SQL-запрос для выдачи всех пользователей, которые совершили заказ, а также вывод этого запроса.
  
-Подсказка: используйте директиву `UPDATE`.
+```sql
+SELECT * FROM clients;
+
+ id |       surname        | country | order_id 
+----+----------------------+---------+----------
+  4 | Ронни Джеймс Дио     | Russia  |         
+  5 | Ritchie Blackmore    | Russia  |         
+  1 | Иванов Иван Иванович | USA     |        3
+  2 | Петров Петр Петрович | Canada  |        4
+  3 | Иоганн Себастьян Бах | Japan   |        5
+```
 
 ## Задача 5
 
