@@ -34,9 +34,15 @@ _`Server version:         8.0.32 MySQL Community Server - GPL`_
 
 Исследуйте, какой `engine` используется в таблице БД `test_db` и **приведите в ответе**.
 
+Используется `InnoDB`;
+
+![image](https://user-images.githubusercontent.com/44001733/232267549-e106aad3-535f-4119-b645-3fe65b2f75ba.png)
+
 Измените `engine` и **приведите время выполнения и запрос на изменения из профайлера в ответе**:
 - на `MyISAM`,
 - на `InnoDB`.
+
+![image](https://user-images.githubusercontent.com/44001733/232269121-758a52c5-abac-4342-bae8-92663c94b3ae.png)
 
 ## Задача 4 
 
