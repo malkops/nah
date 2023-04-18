@@ -29,3 +29,9 @@
 13.2. [Защита хоста. Практика](https://github.com/malkops/nah/blob/master/databases/homeworks/13-02.md)
 
 6.1. [Практика. DevOps - Типы и структура СУБД](https://github.com/malkops/nah/blob/master/databases/homeworks/06-db-01-basics.md)
+
+6.2. [Практика. DevOps - SQL](https://github.com/malkops/nah/blob/master/databases/homeworks/06-db-01-basics.md)
+
+6.3. [Практика. DevOps - MySQL](https://github.com/malkops/nah/blob/master/databases/homeworks/06-db-01-basics.md)
+
+6.4. [Практика. DevOps - PostgreSQL](https://github.com/malkops/nah/blob/master/databases/homeworks/06-db-04-postgresql.md)
