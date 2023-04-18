@@ -11,7 +11,7 @@
 - вывода списка БД, - \l
 - подключения к БД, - \c
 - вывода списка таблиц, - \dt
-- вывода описания содержимого таблиц, - \dt NAME
+- вывода описания содержимого таблиц, - \dS+ NAME
 - выхода из psql. - \q
 
 ## Задача 2
@@ -44,11 +44,51 @@ SELECT attname, avg_width FROM pg_stats WHERE avg_width = (SELECT MAX(avg_width)
 
 Архитектор и администратор БД выяснили, что ваша таблица orders разрослась до невиданных размеров и
 поиск по ней занимает долгое время. Вам как успешному выпускнику курсов DevOps в Нетологии предложили
-провести разбиение таблицы на 2: шардировать на orders_1 - price>499 и orders_2 - price<=499.
+провести разбиение таблицы на 2: партицировать на orders_1 - price>499 и orders_2 - price<=499.
 
 Предложите SQL-транзакцию для проведения этой операции.
 
+_**Удивительно, что этим не занялся администратор БД, иначе зачем он вообще нужен?)**_
+
+_**Для этого метода понадобится невиданных размеров диск, так как проиходит полное копирование данных.**_
+
+```SQL
+BEGIN;
+
+--- rename table and index for delete in the future
+ALTER TABLE orders RENAME TO orders_old;
+ALTER INDEX orders_pkey RENAME TO orders_pkey_old;
+
+-- create master partition table
+CREATE TABLE public.orders (
+    id integer NOT NULL,
+    title character varying(80) NOT NULL,
+    price integer DEFAULT 0
+)
+PARTITION BY RANGE (price);
+
+-- create data partition tables
+CREATE TABLE orders_1 PARTITION OF orders
+FOR VALUES FROM (MINVALUE) TO (499);
+
+CREATE TABLE orders_2 PARTITION OF orders
+FOR VALUES FROM (499) TO (MAXVALUE);
+
+-- copy data
+INSERT INTO orders (id, title, price)
+SELECT id, title, price FROM orders_old;
+
+-- remove old table
+DROP TABLE orders_old;
+
+END;
+
+-- COMMIT;
+```
+
 Можно ли было изначально исключить ручное разбиение при проектировании таблицы orders?
+
+_**Изначально можно было создать мастер таблицу, которая уже работала бы с партицированными таблицами. [Пример](https://pgdash.io/blog/postgres-11-sharding.html)**_
 
 ## Задача 4
 
