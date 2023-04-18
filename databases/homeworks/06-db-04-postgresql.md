@@ -96,4 +96,4 @@ _**Изначально можно было создать мастер табл
 
 Как бы вы доработали бэкап-файл, чтобы добавить уникальность значения столбца `title` для таблиц `test_database`?
 
-Я бы добавил `UNIQE` в строку `title character varying(80) NOT NULL` - `title character varying(80) UNIQE NOT NULL`
+_**Я бы добавил `UNIQE` в строку `title character varying(80) NOT NULL` - `title character varying(80) UNIQE NOT NULL`**_
