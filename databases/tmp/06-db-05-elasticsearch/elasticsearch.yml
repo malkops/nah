@@ -1,0 +1,10 @@
+cluster.name: netology-elastic
+path.data: /var/lib/elasticsearch
+path.logs: /var/log/elasticsearch
+node.master: true
+node.data: true
+node.name: netology_test
+bootstrap.memory_lock: true
+network.host: 0.0.0.0
+http.port: 9200
+discovery.type: single-node
