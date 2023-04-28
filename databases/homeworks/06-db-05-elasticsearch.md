@@ -88,22 +88,53 @@ yellow open ind-2            DI3vRo65SKyQDYPdcti5cg 2 1  0 0   452b   452b
 
 **Приведите в ответе** запрос API и результат вызова API для создания репозитория.
 
+```bash
+curl -X PUT "localhost:9200/_snapshot/netology_backup?pretty" -H 'Content-Type: application/json' -d' { "type": "fs", "settings": { "location": "/var/lib/elasticsearch/snapshots" } } '
+{
+  "acknowledged" : true
+}
+```
+
 Создайте индекс `test` с 0 реплик и 1 шардом и **приведите в ответе** список индексов.
+
+```
+green open .geoip_databases sVqn4LTvQJ660uFXmyz3Tg 1 0 42 0 40.7mb 40.7mb
+green open test             md74YCBEQWO2H2riUW6i8Q 1 0  0 0   226b   226b
+```
 
 [Создайте `snapshot`](https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-take-snapshot.html) 
 состояния кластера `Elasticsearch`.
 
 **Приведите в ответе** список файлов в директории со `snapshot`.
+```bash
+ll /var/lib/elasticsearch/snapshots
+total 44
+drwxr-sr-x. 3 elasticsearch elasticsearch   134 Apr 28 08:11 ./
+drwxr-s---. 1 elasticsearch elasticsearch    36 Apr 28 08:03 ../
+-rw-r--r--. 1 elasticsearch elasticsearch  1431 Apr 28 08:11 index-0
+-rw-r--r--. 1 elasticsearch elasticsearch     8 Apr 28 08:11 index.latest
+drwxr-sr-x. 6 elasticsearch elasticsearch   126 Apr 28 08:11 indices/
+-rw-r--r--. 1 elasticsearch elasticsearch 29229 Apr 28 08:11 meta-pRUQbXllQgKoJP8_BGvIhQ.dat
+-rw-r--r--. 1 elasticsearch elasticsearch   718 Apr 28 08:11 snap-pRUQbXllQgKoJP8_BGvIhQ.dat
+```
 
 Удалите индекс `test` и создайте индекс `test-2`. **Приведите в ответе** список индексов.
+
+```
+green open test-2           FyU-b4HBSMCvTLW_aRGnkw 1 0  0 0   226b   226b
+green open .geoip_databases sVqn4LTvQJ660uFXmyz3Tg 1 0 42 0 40.7mb 40.7mb
+```
 
 [Восстановите](https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-restore-snapshot.html) состояние
 кластера `Elasticsearch` из `snapshot`, созданного ранее. 
 
 **Приведите в ответе** запрос к API восстановления и итоговый список индексов.
 
-Подсказки:
+```bash
+curl -X POST "localhost:9200/_snapshot/netology_backup/snapshot_2023.04.28/_restore?pretty" -H 'Content-Type: application/json' -d' { "indices": "test" } '
+```
 
-- возможно, вам понадобится доработать `elasticsearch.yml` в части директивы `path.repo` и перезапустить `Elasticsearch`.
-
-
+```
+green open .geoip_databases sVqn4LTvQJ660uFXmyz3Tg 1 0 42 0 40.7mb 40.7mb
+green open test             4RYBrHJURnelKJMOtbfGvg 1 0  0 0   226b   226b
+```
