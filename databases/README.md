@@ -35,3 +35,7 @@
 6.3. [Практика. DevOps - MySQL](https://github.com/malkops/nah/blob/master/databases/homeworks/06-db-03-mysql.md)
 
 6.4. [Практика. DevOps - PostgreSQL](https://github.com/malkops/nah/blob/master/databases/homeworks/06-db-04-postgresql.md)
+
+6.5. [Практика. DevOps - Elasticsearch](https://github.com/malkops/nah/blob/master/databases/homeworks/06-db-05-elasticsearch.md)
+
+6.6. [Практика. DevOps - Troubleshooting](https://github.com/malkops/nah/blob/master/databases/homeworks/06-db-06-troobleshooting.md)
