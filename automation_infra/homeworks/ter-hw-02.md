@@ -39,6 +39,8 @@ _**Сделано.**_
 2. Скопируйте блок ресурса и создайте с его помощью вторую ВМ(в файле main.tf): **"netology-develop-platform-db"** ,  cores  = 2, memory = 2, core_fraction = 20. Объявите ее переменные с префиксом **vm_db_** в том же файле('vms_platform.tf').
 3. Примените изменения.
 
+https://github.com/malkops/nah/blob/terraform-02/automation_infra/homeworks/tmp/02/src/vms_platform.tf
+
 
 ### Задание 4
 
@@ -55,6 +57,7 @@ _**Сделано.**_
 2. Замените переменные с именами ВМ из файла variables.tf на созданные вами local переменные.
 3. Примените изменения.
 
+https://github.com/malkops/nah/blob/terraform-02/automation_infra/homeworks/tmp/02/src/locals.tf
 
 ### Задание 6
 
