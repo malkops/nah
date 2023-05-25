@@ -9,6 +9,7 @@
 3. Добавьте в файл cloud-init.yml установку nginx.
 4. Предоставьте скриншот подключения к консоли и вывод команды ```sudo nginx -t```.
 
+![1](https://github.com/malkops/nah/assets/44001733/bc224c2c-1dc7-438e-87f0-c75344132021)
 
 ### Задание 2
 
@@ -17,7 +18,7 @@
 3. Замените ресурсы yandex_vpc_network и yandex_vpc_subnet, созданным модулем.
 4. Сгенерируйте документацию к модулю с помощью terraform-docs.    
  
-
+[Документация](https://github.com/malkops/nah/blob/terraform-04/automation_infra/homeworks/tmp/04/src/modules/vpc/README.md)
 
 ### Задание 3
 1. Выведите список ресурсов в стейте.
@@ -119,3 +120,8 @@ module "vpc_dev" {
 ```
 
 Предоставьте код, план выполнения, результат из консоли YC.
+
+Код можно посмотреть [тут](https://github.com/malkops/nah/tree/terraform-04/automation_infra/homeworks/tmp/04/src/modules/vpc). Отдельно его не выделял.
+[Ссылка](https://github.com/malkops/nah/blob/terraform-04/automation_infra/homeworks/tmp/04/src/tfplan.txt) на план выполнения.
+
+![2](https://github.com/malkops/nah/assets/44001733/8ef87aea-ba18-484d-b510-1c12ad12008d)
