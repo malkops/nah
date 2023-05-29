@@ -44,7 +44,7 @@ resource "yandex_compute_instance" "vm-2" {
   name = "terraform2"
 
   resources {
-        cores  = 2
+    cores  = 2
     memory = 2
     core_fraction = 5
   }
