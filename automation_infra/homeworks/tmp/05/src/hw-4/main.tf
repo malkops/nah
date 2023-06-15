@@ -8,7 +8,7 @@ module "vpc" {
 }
 
 module "test-vm" {
-  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=test"
   env_name       = "develop"
   network_id     = module.vpc.network_id
   subnet_zones   = module.vpc.subnet_zones
@@ -16,11 +16,11 @@ module "test-vm" {
   instance_name  = "web"
   instance_count = 2
   image_family   = "ubuntu-2004-lts"
-  public_ip      = true
+  public_ip      = false
 
   metadata = {
     user-data          = data.template_file.cloudinit.rendered #Для демонстрации №3
-    serial-port-enable = 1
+    serial-port-enable = 0
   }
 
 }
