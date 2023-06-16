@@ -9,7 +9,7 @@ ok: [localhost] => {
 }
 ```
 
-1. Найдите файл с переменными (group_vars) в котором задаётся найденное в первом пункте значение и поменяйте его на 'all default fact'. - _**[all/examp.yml_origin](/tmp/ans/01/group_vars/all/examp.yml_origin)**_
+1. Найдите файл с переменными (group_vars) в котором задаётся найденное в первом пункте значение и поменяйте его на 'all default fact'. - _**[all/examp.yml_origin](/automation_infra/homeworks/tmp/ans/01/group_vars/all/examp.yml_origin)**_
 2. Воспользуйтесь подготовленным (используется `docker`) или создайте собственное окружение для проведения дальнейших испытаний.
 3. Проведите запуск playbook на окружении из `prod.yml`. Зафиксируйте полученные значения `some_fact` для каждого из `managed host`.
 
@@ -21,7 +21,7 @@ ok: [ubuntu] => {
     "msg": "deb"
 ```
 
-5. Добавьте факты в `group_vars` каждой из групп хостов так, чтобы для `some_fact` получились следующие значения: для `deb` - 'deb default fact', для `el` - 'el default fact'. - _**[deb](/tmp/ans/01/group_vars/deb/examp.yml) и [el](/tmp/ans/01/group_vars/el/examp.yml)**_
+5. Добавьте факты в `group_vars` каждой из групп хостов так, чтобы для `some_fact` получились следующие значения: для `deb` - 'deb default fact', для `el` - 'el default fact'. - _**[deb](/automation_infra/homeworks/tmp/ans/01/group_vars/deb/examp.yml) и [el](/automation_infra/homeworks/tmp/ans/01/group_vars/el/examp.yml)**_
 6. Повторите запуск playbook на окружении `prod.yml`. Убедитесь, что выдаются корректные значения для всех хостов.
 
 ```bash
@@ -33,10 +33,10 @@ ok: [ubuntu] => {
 }
 ```
 
-7. При помощи `ansible-vault` зашифруйте факты в `group_vars/deb` и `group_vars/el` с паролем `netology`. - _**`ansible-vault encrypt tmp/ans/01/group_vars/deb/examp.yml tmp/ans/01/group_vars/el/examp.yml`**_
+7. При помощи `ansible-vault` зашифруйте факты в `group_vars/deb` и `group_vars/el` с паролем `netology`. - _**`ansible-vault encrypt nah/automation_infra/homeworks/tmp/ans/01/group_vars/deb/examp.yml tmp/ans/01/group_vars/el/examp.yml`**_
 8. Запустите playbook на окружении `prod.yml`. При запуске `ansible` должен запросить у вас пароль. Убедитесь в работоспособности. - _**`ansible-playbook -i tmp/ans/01/inventory/prod.yml tmp/ans/01/site.yml --ask-vault-pass`**_
 9.  Посмотрите при помощи `ansible-doc` список плагинов для подключения. Выберите подходящий для работы на `control node`.
-10.  В `prod.yml` добавьте новую группу хостов с именем  `local`, в ней разместите localhost с необходимым типом подключения. - _**[prod.yml](/tmp/ans/01/inventory/prod.yml)**_
+10.  В `prod.yml` добавьте новую группу хостов с именем  `local`, в ней разместите localhost с необходимым типом подключения. - _**[prod.yml](/automation_infra/homeworks/tmp/ans/01/inventory/prod.yml)**_
 11.  Запустите playbook на окружении `prod.yml`. При запуске `ansible` должен запросить у вас пароль. Убедитесь что факты `some_fact` для каждого из хостов определены из верных `group_vars`. - _**ansible-playbook -i tmp/ans/01/inventory/prod.yml tmp/ans/01/site.yml --ask-vault-pass**_
 
 ```bash
@@ -55,8 +55,8 @@ ok: [localhost] => {
 
 ## Необязательная часть
 
-1. При помощи `ansible-vault` расшифруйте все зашифрованные файлы с переменными. - _**`ansible-vault decrypt tmp/ans/01/group_vars/deb/examp.yml tmp/ans/01/group_vars/el/examp.yml`**_
-2. Зашифруйте отдельное значение `PaSSw0rd` для переменной `some_fact` паролем `netology`. Добавьте полученное значение в `group_vars/all/exmp.yml`. - _**[all/examp.yml](/tmp/ans/01/group_vars/all/examp.yml)**_
+1. При помощи `ansible-vault` расшифруйте все зашифрованные файлы с переменными. - _**`ansible-vault decrypt nah/automation_infra/homeworks/tmp/ans/01/group_vars/deb/examp.yml nah/automation_infra/homeworks/tmp/ans/01/group_vars/el/examp.yml`**_
+2. Зашифруйте отдельное значение `PaSSw0rd` для переменной `some_fact` паролем `netology`. Добавьте полученное значение в `group_vars/all/exmp.yml`. - _**[all/examp.yml](/automation_infra/homeworks/tmp/ans/01/group_vars/all/examp.yml)**_
 3. Запустите `playbook`, убедитесь, что для нужных хостов применился новый `fact`.
 4. Добавьте новую группу хостов `fedora`, самостоятельно придумайте для неё переменную. В качестве образа можно использовать [этот](https://hub.docker.com/r/pycontribs/fedora).
 5. Напишите скрипт на bash: автоматизируйте поднятие необходимых контейнеров, запуск ansible-playbook и остановку контейнеров.
