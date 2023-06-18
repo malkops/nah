@@ -7,4 +7,4 @@
         msg: "{{ ansible_distribution }}"
     - name: Print fact
       ansible.builtin.debug:
-        msg: "{{ some_fact }}"
+        msg: "{{ fedora_fact | default(some_fact) }}"
