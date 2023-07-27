@@ -46,7 +46,7 @@
 3. Проверьте, что все файлы загрузились успешно.
 4. В ответе пришлите файл `maven-metadata.xml` для этого артефекта.
 
-[XML для bug](tmp/cicd/infrastructure/files/maven-metadata.xml)
+[maven-metadata.xml](tmp/cicd/infrastructure/files/maven-metadata.xml)
 
 ### Знакомство с Maven
 
@@ -71,5 +71,5 @@
 
 4. В ответе пришлите исправленный файл `pom.xml`.
 
-[XML для bug](tmp/cicd/mvn/pom.xml)
+[pom.xml](tmp/cicd/mvn/pom.xml)
 
