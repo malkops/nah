@@ -51,12 +51,12 @@
 6. Если всё отработалось в рамках ожидания — выгрузите схемы workflow для импорта в XML. Файлы с workflow и скриншоты workflow приложите к решению задания.
 
 BUG:
-[XML для bug](tmp/netology-bug.xml)
+[XML для bug](tmp/intro/netology-bug.xml)
 
 ![bug](https://github.com/malkops/nah/assets/44001733/d8160725-623d-45d6-bbb0-07bebecd6a5d)
 
 OTHER:
-[XML для bug](tmp/netology-other.xml)
+[XML для bug](tmp/intro/netology-other.xml)
 
 ![all](https://github.com/malkops/nah/assets/44001733/d214309f-98cc-401d-97d6-9ae91d19f999)
 
