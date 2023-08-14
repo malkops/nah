@@ -1,0 +1,31 @@
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  variables:
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ""
+    DOCKER_HOST: tcp://localhost:2375/
+  image: docker:19.03.1
+  services:
+    - docker:19.03.1-dind
+  before_script:
+    - docker login --username iam --password $OAUTH cr.yandex
+  script:
+    - docker build -t cr.yandex/crpvsl7hih4s9mrb82m2/python-api:gitlab-$CI_COMMIT_SHORT_SHA .
+    - docker push cr.yandex/crpvsl7hih4s9mrb82m2/python-api:gitlab-$CI_COMMIT_SHORT_SHA
+
+deploy:
+  only:
+    - main
+  stage: deploy
+  image: gcr.io/cloud-builders/kubectl:latest
+  script:
+    - kubectl config set-cluster k8s --server="$KUBE_URL" --insecure-skip-tls-verify=true
+    - kubectl config set-credentials admin --token="$KUBE_TOKEN"
+    - kubectl config set-context default --cluster=k8s --user=admin
+    - kubectl config use-context default
+    - sed -i "s/__VERSION__/gitlab-$CI_COMMIT_SHORT_SHA/" k8s.yml
+    - kubectl apply -f k8s.yml
