@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: python-api
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-api-deployment
+  namespace: python-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python
+  template:
+    metadata:
+      namespace: python-api
+      labels:
+        app: python
+    spec:
+      containers:
+        - name: python-api
+          image: cr.yandex/crpvsl7hih4s9mrb82m2/python-api:__VERSION__
+          imagePullPolicy: Always
