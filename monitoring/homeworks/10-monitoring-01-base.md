@@ -60,3 +60,5 @@ _**В данной формуле не учтены ошибки 1хх и 3хх,
 _**Файл скрипта - [proc-monitoring.py](tmp/proc-monitoring.py)**_
 
 _**Файл лога - [proc-monitoring.py](tmp/23-08-15-awesome-monitoring.log)**_
+
+_**Конфигурация cron - `* * * * * /usr/bin/python3 /home/user/netology/monitoring/monitoring.py`**_
