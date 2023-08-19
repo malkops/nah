@@ -26,6 +26,8 @@
 1. Подключите поднятый вами prometheus, как источник данных.
 1. Решение домашнего задания — скриншот веб-интерфейса grafana со списком подключенных Datasource.
 
+Docker compose и prometheus.yml [лежут тут](tmp/grafana/03/)
+
 ![image](https://github.com/malkops/nah/assets/44001733/e6eff30a-f045-4a23-9757-2701d6e0371d)
 
 ## Задание 2
@@ -62,4 +64,4 @@
 1. Сохраните ваш Dashboard. Для этого перейдите в настройки Dashboard, выберите в боковом меню «JSON MODEL». Далее скопируйте отображаемое json-содержимое в отдельный файл и сохраните его.
 1. В качестве решения задания приведите листинг этого файла.
 
-[JSON model final dashboard](tmp/json_model_dashboard.json)
+[JSON model final dashboard](tmp/grafana/03/json_model_dashboard.json)
