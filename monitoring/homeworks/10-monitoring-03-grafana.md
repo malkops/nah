@@ -58,6 +58,7 @@ Docker compose и prometheus.yml [лежут тут](tmp/grafana/03/)
 
 ![image](https://github.com/malkops/nah/assets/44001733/6e6d8d7a-cf14-4e89-9de7-87303c5e448b)
 
+![image](https://github.com/malkops/nah/assets/44001733/ce10d077-288b-4ea5-9a4c-515ef62065a8)
 
 ## Задание 4
 
