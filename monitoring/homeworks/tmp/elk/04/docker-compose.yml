@@ -1,0 +1,82 @@
+networks:
+  elk:
+
+services:
+  kibana:
+    image: kibana:7.17.10
+    ports:
+      - 5601:5601
+    networks:
+      - elk
+    environment:
+      ELASTICSEARCH_HOSTS: '["http://es01:9200","http://es02:9200"]'
+
+  es01:
+    image: elasticsearch:7.17.10
+    container_name: es01
+    environment:
+      - node.name=es01
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es01,es02
+      - cluster.initial_master_nodes=es01
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    # volumes:
+    #   - data01:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+      - 9300:9300
+    networks:
+      - elk
+  es02:
+    image: elasticsearch:7.17.10
+    container_name: es02
+    environment:
+      - node.name=es02
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es01,es02
+      - cluster.initial_master_nodes=es01
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    # volumes:
+    #   - data02:/usr/share/elasticsearch/data
+    networks:
+      - elk
+
+  logstash:
+    image: logstash:7.17.10
+    environment:
+      - ELASTICSEARCH_HOSTS='["http://es01:9200","http://es02:9200"]'
+      - xpack.monitoring.enabled=false
+    volumes:
+      - ./elk_configs/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "5045:5045"
+    networks:
+      - elk
+
+  filebeat:
+    image: elastic/filebeat:7.17.10
+    environment:
+      - logging.metrics.enabled=false
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/:/var/lib/docker/:Zrw
+      - ./elk_configs/filebeat.yml:/usr/share/filebeat/filebeat.yml
+    networks:
+      - elk
+
+  dummy:
+    image: python:3.9.17-slim
+    volumes:
+      - ./run.py:/opt/run.py
+    entrypoint: ["python", "/opt/run.py"]
