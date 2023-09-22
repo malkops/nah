@@ -114,4 +114,4 @@ _**Добавлена централизация логов -- Vector + ElasticS
 
 _**Добавлен мониторинг -- Prometheus + Grafana. Тут не разобрался как вычислить распределение запросов по сервисам, поэтому вставил дашборд для minio.**_
 
-_**[Докер композ и новые конфиги для vector, prometheus и grafana находится тут](11-microservices-02-principles).**_
+_**[Докер композ и новые конфиги для vector, prometheus и grafana находится тут](11-microservices-02-principles)**_
