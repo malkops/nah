@@ -1,0 +1,44 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          
+rule_files:
+
+scrape_configs:
+  - job_name: storage
+    bearer_token: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJwcm9tZXRoZXVzIiwiZXhwIjo0ODQ5MDAwMDIwfQ.KdPCF3YKa3_TUpG0LmhNeTwizq7eQysSXbZSFxfR-7j0hOuty1Dgh6kSAfNx5yeMrZelJI4VACNdvCrKuDQfsQ
+    metrics_path: /minio/v2/metrics/cluster
+    scheme: http
+    static_configs:
+    - targets: 
+      - "storage:9000"
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: '([^:]+)(:[0-9]+)?'
+        replacement: '${1}'
+  - job_name: security
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - "security:3000"
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: '([^:]+)(:[0-9]+)?'
+        replacement: '${1}'
+  - job_name: uploader
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - "uploader:3000"
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: '([^:]+)(:[0-9]+)?'
+        replacement: '${1}'

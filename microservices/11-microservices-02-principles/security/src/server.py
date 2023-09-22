@@ -11,7 +11,8 @@ metrics.info('app_info', 'Application info', version='1.0')
 jwt_key = 'secret'
 data = {
     'bob': pbkdf2_sha256.hash('qwe123'),
-    'test': pbkdf2_sha256.hash('111')
+    'test': pbkdf2_sha256.hash('111'),
+    'admin':  pbkdf2_sha256.hash('qwerty123456')
 }
 
 @server.route('/status', methods=['GET'])

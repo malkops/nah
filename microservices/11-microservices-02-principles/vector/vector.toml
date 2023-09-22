@@ -1,0 +1,28 @@
+[sources.docker]
+type = "docker_logs"
+docker_host = "/var/run/docker.sock"
+include_containers = [ "storage", "security", "uploader", "createbuckets", "gateway" ]
+
+[sources.docker_file]
+type = "file"
+include = [ "/var/lib/docker/containers/*/*-json.log" ]
+exclude = [ "/var/log/binary-file.log" ]
+
+[transforms.in_json]
+type = "remap"
+inputs = [ "docker" ]
+drop_on_abort = true
+source = """
+    . = parse_json!(.message)
+    . = parse_json!(.log)
+    """
+
+[sinks.elastic]
+type = "elasticsearch"
+inputs = [ "in_json" ]
+api_version = "v7"
+endpoints = [ "http://es01:9200" ]
+auth.strategy = "basic"
+auth.user = "superuser"
+auth.password = "qwerty123456"
+bulk.index = "vector-%Y-%m-%d"
