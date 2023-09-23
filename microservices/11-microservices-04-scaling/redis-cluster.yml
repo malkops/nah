@@ -1,0 +1,70 @@
+---
+- name: Redis cluster
+  hosts: redis_hosts
+  remote_user: ubuntu
+  become: true
+
+  tasks:
+    - name: Get APT Key
+      ansible.builtin.shell:
+        cmd: curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+
+    - name: Add Redis apt repo
+      ansible.builtin.shell:
+        cmd: echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg]
+            https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
+
+    - name: Update install redis with update
+      ansible.builtin.apt:
+        update_cache: true
+        name: redis
+        state: present
+
+    - name: Copy redis conf for master
+      ansible.builtin.copy:
+        src: "redis/redis.conf"
+        dest: "/etc/redis/redis.conf"
+        owner: redis
+        group: redis
+        mode: "0640"
+
+    - name: Copy redis conf for replica
+      ansible.builtin.copy:
+        src: "redis/redis_6378.conf"
+        dest: "/etc/redis/redis_6378.conf"
+        owner: redis
+        group: redis
+        mode: "0640"
+
+    - name: Copy redis sercvice for second instance
+      ansible.builtin.copy:
+        src: "/lib/systemd/system/redis-server.service"
+        dest: "/lib/systemd/system/redis-server2.service"
+        remote_src: true
+        owner: redis
+        group: redis
+        mode: "0640"
+
+    - name: Replace execstart replica service
+      ansible.builtin.lineinfile:
+        path: /lib/systemd/system/redis-server2.service
+        regexp: '^ExecStart=/usr/bin/redis-server /etc/redis/redis.conf$'
+        line: 'ExecStart=/usr/bin/redis-server /etc/redis/redis_6378.conf'
+        backrefs: true
+
+    - name: Replace pidfile replica service
+      ansible.builtin.lineinfile:
+        path: /lib/systemd/system/redis-server2.service
+        regexp: '^PIDFile=/run/redis/redis-server.pid$'
+        line: 'PIDFile=/run/redis/redis-server_6378.pid'
+        backrefs: true
+
+    - name: Reload master redis
+      ansible.builtin.systemd:
+        name: redis-server
+        state: restarted
+
+    - name: Reload replica redis
+      ansible.builtin.systemd:
+        name: redis-server2
+        state: restarted
