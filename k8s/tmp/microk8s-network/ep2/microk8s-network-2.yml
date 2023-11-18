@@ -1,0 +1,25 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: netology-network-ingress
+  labels:
+    name: netology-network-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - pathType: Exact
+        path: "/"
+        backend:
+          service:
+            name: netology-network-service-frontend
+            port: 
+              number: 80
+      - pathType: Exact
+        path: "/api"
+        backend:
+          service:
+            name: netology-network-service-backend
+            port: 
+              number: 1180

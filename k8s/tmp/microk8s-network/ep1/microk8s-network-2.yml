@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: netology-network-service
+  name: netology-network-service-outer
 spec:
   selector:
     app: netology-network

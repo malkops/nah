@@ -1,0 +1,77 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netology-network-fronted
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: netology-network-fronted
+  template:
+    metadata:
+      labels:
+        app: netology-network-fronted
+    spec:
+      containers:
+      - name: netology-network-nginx
+        image: nginx:1.25.3
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
+        ports:
+        - name: nginx
+          containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netology-network-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: netology-network-backend
+  template:
+    metadata:
+      labels:
+        app: netology-network-backend
+    spec:
+      containers:
+      - name: netology-network-multitul
+        image: wbitt/network-multitool:minimal
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
+        ports:
+        - name: multitool
+          containerPort: 1180
+        env:
+        - name: HTTP_PORT
+          value: "1180"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: netology-network-service-frontend
+spec:
+  selector:
+    app: netology-network-fronted
+  ports:
+  - name: nginx-svc
+    port: 80
+    targetPort: nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: netology-network-service-backend
+spec:
+  selector:
+    app: netology-network-backend
+  ports:
+  - name: multitool-svc
+    port: 1180
+    targetPort: multitool
