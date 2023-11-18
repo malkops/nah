@@ -8,6 +8,18 @@
 4. Создать Service, который обеспечит доступ до реплик приложений из п.1.
 5. Создать отдельный Pod с приложением multitool и убедиться с помощью `curl`, что из пода есть доступ до приложений из п.1.
 
+До:
+![image](https://github.com/malkops/nah/assets/44001733/590ca555-f7bc-4f6b-ac5f-a2199554b6ea)
+
+После:
+![image](https://github.com/malkops/nah/assets/44001733/8d0d5a58-b166-4910-baca-664b5c6a534b)
+
+Трафик в под:
+![image](https://github.com/malkops/nah/assets/44001733/a0fa9bf2-011a-4901-a12f-159fd2c4b793)
+
+Трафик из пода в под:
+![image](https://github.com/malkops/nah/assets/44001733/4cd71b2d-bf45-4816-80d9-209a14c44162)
+
 ------
 
 ### Задание 2. Создать Deployment и обеспечить старт основного контейнера при выполнении условий
