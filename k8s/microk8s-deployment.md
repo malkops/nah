@@ -37,5 +37,4 @@
 Стартанул:
 ![image](https://github.com/malkops/nah/assets/44001733/9121497c-0155-46cf-9078-2fadbf23f111)
 
-Манифесты находятся тут
 [Манифест находится тут](tmp/microk8s-deployment/)
