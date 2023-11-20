@@ -11,13 +11,17 @@
 
 [Манифест находится тут](tmp/microk8s-volumes/ep2/microk8s-volume-2.yml)
 
+Чтение файла (п.3):
+
+![1-read](https://github.com/malkops/nah/assets/44001733/43376401-75ac-4ceb-a898-847f529f5baa)
+
 В пункте 4 файл удалился с ноды, так потому что в манифесте стояло `persistentVolumeReclaimPolicy: Delete`.
 
-
+![image_2023-11-20_19-37-00](https://github.com/malkops/nah/assets/44001733/3c0e8c0e-ddd1-41ec-923f-9843dac6f240)
 
 После изменения на `Retain`, файл сохранился на ноде в пункте 4 и в пункте 5.
 
-
+![image](https://github.com/malkops/nah/assets/44001733/01f714e7-fa12-4c4f-a660-5274b4cbb535)
 
 ------
 
@@ -29,3 +33,11 @@
 4. Предоставить манифесты, а также скриншоты или вывод необходимых команд.
 
 [Манифест находится тут](tmp/microk8s-volumes/ep2/microk8s-volume-2.yml)
+
+Чтение и запись в файл из пода:
+
+![2-read-write](https://github.com/malkops/nah/assets/44001733/ada974fb-36ff-4b7f-95d1-f9f4e43615fd)
+
+Содержимое файла на ноде:
+
+![image](https://github.com/malkops/nah/assets/44001733/ed32fb84-dd60-4709-9249-da5ffdb0cdc3)
