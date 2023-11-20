@@ -12,6 +12,10 @@
 
 [Манифест находится тут](tmp/microk8s-volumes/ep1/microk8s-volume-1.yml)
 
+Чтение файла:
+
+![1-read](https://github.com/malkops/nah/assets/44001733/03b7a990-5411-4ece-89f4-3b6a00a1c977)
+
 ------
 
 ### Задание 2
@@ -24,3 +28,7 @@
 4. Предоставить манифесты Deployment, а также скриншоты или вывод команды из п. 2.
 
 [Манифест находится тут](tmp/microk8s-volumes/ep1/microk8s-volume-2.yml)
+
+Чтение syslog:
+
+![2-syslog](https://github.com/malkops/nah/assets/44001733/36a0c4e7-bf80-4137-ba02-7b455902236d)
