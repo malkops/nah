@@ -10,6 +10,14 @@
 
 [Манифест находится тут](tmp/microk8s-cfg-secret/microk8s-cfg-secret-1.yml)
 
+Контейнеры стартанули:
+
+![1-startup](https://github.com/malkops/nah/assets/44001733/d586206c-5808-4ffe-8aa0-d22272a7901d)
+
+Проверка трафика:
+
+![1-curl](https://github.com/malkops/nah/assets/44001733/8207babc-2d32-4a43-9fc6-a388a7ef6bc1)
+
 ------
 
 ### Задание 2. Создать приложение с вашей веб-страницей, доступной по HTTPS 
@@ -26,3 +34,7 @@
 После этого сертификаты были завернуты в base64 и использованы в configmap'e в манифесте
 
 [Манифест находится тут](tmp/microk8s-cfg-secret/microk8s-cfg-secret-2.yml)
+
+Подтверждение TLS:
+
+![2-ssl](https://github.com/malkops/nah/assets/44001733/ecf7e249-c3a1-4088-9f4e-10dc795d9c68)
