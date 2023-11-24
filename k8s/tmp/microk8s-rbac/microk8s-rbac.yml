@@ -1,0 +1,59 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: default
+  name: pods-log-cfg
+rules:
+- apiGroups: [""]
+  resources: ["pods", "pods/log"]
+  verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: pods-log-cfg-bind
+  namespace: default
+subjects:
+- kind: User
+  name: test
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: pods-log-cfg
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    name: hello-world
+  name: hello-world
+spec:
+  containers:
+  - name: hello-world
+    image: gcr.io/kubernetes-e2e-test-images/echoserver:2.2
+    ports:
+    - containerPort: 8080
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: netology-deployment-service
+spec:
+  selector:
+    app: netology-deployment
+  type: NodePort
+  ports:
+  - name: nginx-svc
+    port: 80
+    targetPort: nginx
+    nodePort: 30000
+  - name: multitool-svc
+    port: 1180
+    targetPort: multitool
+    nodePort: 30001
