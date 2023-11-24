@@ -1,0 +1,12 @@
+{{- if .Values.nginx.page -}}
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: nginx-page
+  namespace: "{{ .Values.namespace | default "default" }}"
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+data:
+  index.html: |
+    {{ .Values.nginx.page }}
+{{- end -}}

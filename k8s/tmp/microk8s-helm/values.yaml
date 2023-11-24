@@ -1,0 +1,15 @@
+namespace: app1
+replicaCount: 1
+image: nginx:1.25.3-alpine
+
+nginx:
+  page: |
+    <h1>Hello! It's custom html page for nginx</h1>
+
+resources:
+  limits:
+    memory: "128Mi"
+    cpu: "250m"
+
+service:
+  internalPort: 80
