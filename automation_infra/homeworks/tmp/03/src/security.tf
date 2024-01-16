@@ -18,7 +18,7 @@ variable "security_group_ingress" {
     },
     {
       protocol       = "TCP"
-      description    = "разрешить входящий  http"
+      description    = "разрешить входящий http"
       v4_cidr_blocks = ["0.0.0.0/0"]
       port           = 80
     },
