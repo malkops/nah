@@ -38,7 +38,7 @@ resource "yandex_compute_instance" "master" {
 }
 
 resource "yandex_compute_instance" "worker" {
-  count = 4
+  count = 1
   name = "k8s-worker-${count.index}"
 
   metadata = {
