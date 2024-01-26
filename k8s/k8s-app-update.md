@@ -19,8 +19,17 @@
 ### Задание 2. Обновить приложение
 
 1. Создать deployment приложения с контейнерами nginx и multitool. Версию nginx взять 1.19. Количество реплик — 5.
+
+![create](https://github.com/malkops/nah/assets/44001733/cce61cb6-a11d-4ae2-b3b9-1dcd4132c8af)
+
 2. Обновить версию nginx в приложении до версии 1.20, сократив время обновления до минимума. Приложение должно быть доступно.
+
+![update](https://github.com/malkops/nah/assets/44001733/6c2c192f-1ab7-4658-babb-f17491ddf1a5)
+
 3. Попытаться обновить nginx до версии 1.28, приложение должно оставаться доступным.
+
+![failed](https://github.com/malkops/nah/assets/44001733/c53b5402-07c7-4299-9adc-cad74fbcdf84)
+
 4. Откатиться после неудачного обновления.
 
-
+![restored](https://github.com/malkops/nah/assets/44001733/952d4310-d412-439d-a24c-73da33caa6b0)
