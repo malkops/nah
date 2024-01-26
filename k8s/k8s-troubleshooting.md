@@ -20,8 +20,12 @@ kubectl apply -f https://raw.githubusercontent.com/netology-code/kuber-homeworks
 
 Первая попытка установить не дала результатов. По дефолту нет ns web и data. Создал, руками и установил еще раз.
 
+![solution_1](https://github.com/malkops/nah/assets/44001733/0b58424c-8215-4a02-bedf-4eb38ae0e54e)
 
 Дальше выяснилось, что curl в манифесте идет в другой ns (из web в data), но указано не полное имя для svc.
 
+![error_2](https://github.com/malkops/nah/assets/44001733/648c11c6-add8-4aa8-a43b-10d85fc82f6e)
+
 Отредактируем деплоймент (и мысленно файл манифеста), перезапустим dns (это не обязательно, но у меня не заработало по другому) и проверим - всё работает.
 
+![solution_2](https://github.com/malkops/nah/assets/44001733/8cd033f4-3adf-45a1-9846-a3510d50eaea)
