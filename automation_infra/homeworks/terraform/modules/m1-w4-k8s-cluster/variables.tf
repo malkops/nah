@@ -14,3 +14,8 @@ variable "image_id" {
 variable subnet_id {
   description = "Subnets for modules"
 }
+
+variable "provision" {
+  description = "Is necessary provisioning"
+  default = "false"
+}

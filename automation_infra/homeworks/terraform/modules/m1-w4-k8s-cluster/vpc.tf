@@ -27,6 +27,7 @@ resource "yandex_compute_instance" "master" {
   boot_disk {
     initialize_params {
       image_id = var.image_id
+      size = 20
     }
   }
 
@@ -57,6 +58,7 @@ resource "yandex_compute_instance" "worker" {
   boot_disk {
     initialize_params {
       image_id = var.image_id
+      size = 20
     }
   }
 
@@ -68,33 +70,36 @@ resource "yandex_compute_instance" "worker" {
 }
 
 # provision master
-# resource "null_resource" "provsion_master" {
-#   connection {
-#     type  = "ssh"
-#     host  = yandex_compute_instance.master.network_interface.0.nat_ip_address
-#     user  = "user"
-#     agent = false
-#     private_key = file(var.connection_private_key)
-#   }
+resource "null_resource" "provsion_master" {
+  count = var.provision == true ? 1 : 0
+  connection {
+    type  = "ssh"
+    host  = yandex_compute_instance.master.network_interface.0.nat_ip_address
+    user  = "user"
+    agent = false
+    private_key = file(var.connection_private_key)
+  }
 
-#   provisioner "remote-exec" {
-#     script = "${path.module}/files/provision_master.sh"
-#   }
-# }
+  provisioner "remote-exec" {
+    script = "${path.module}/files/provision_master.sh"
+  }
+}
 
-# # provision worker
-# resource "null_resource" "provsion_worker" {
-#   for_each = { for vm in yandex_compute_instance.worker: vm.network_interface.0.nat_ip_address => vm }
+# provision worker
+resource "null_resource" "provsion_worker" {
+  # for_each = { for vm in yandex_compute_instance.worker: vm.network_interface.0.nat_ip_address => vm }
+  count = var.provision == true ? 1 : 0
 
-#   connection {
-#     type  = "ssh"
-#     host  = each.value.network_interface.0.nat_ip_address
-#     user  = "user"
-#     agent = false
-#     private_key = file(var.connection_private_key)
-#   }
+  connection {
+    type  = "ssh"
+    # host  = each.value.network_interface.0.nat_ip_address
+    host  = yandex_compute_instance.worker.0.network_interface.0.nat_ip_address
+    user  = "user"
+    agent = false
+    private_key = file(var.connection_private_key)
+  }
 
-#   provisioner "remote-exec" {
-#     script = "${path.module}/files/provision_worker.sh"
-#   }
-# }
+  provisioner "remote-exec" {
+    script = "${path.module}/files/provision_worker.sh"
+  }
+}

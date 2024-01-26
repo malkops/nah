@@ -15,8 +15,9 @@ provider "yandex" {
 }
 
 module "m1-w4-k8s-cluster" {
-  source          = "./modules/m1-w4-k8s-cluster"
-  public_key_path = var.public_key_path
-  subnet_id       = var.subnet_id
+  source                 = "./modules/m1-w4-k8s-cluster"
+  public_key_path        = var.public_key_path
+  subnet_id              = var.subnet_id
   connection_private_key = var.connection_private_key
+  provision              = true
 }
