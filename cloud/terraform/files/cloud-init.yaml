@@ -1,0 +1,18 @@
+#cloud-config
+users:
+  - name: user
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+     - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEjBw2CVuuBD5CzoFJ7ift/tKRhuCfa5wQgskBNzTXXQ netology
+# mounts:
+#   - [ swap, null ]
+# # package_update: true
+# # package_upgrade: false
+# packages:
+#   - ca-certificates 
+#   - curl
+#   - gnupg
+#   - gpg
+#   - apt-transport-https
