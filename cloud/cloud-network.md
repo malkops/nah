@@ -13,4 +13,22 @@
 - Создать route table. Добавить статический маршрут, направляющий весь исходящий трафик private сети в NAT-инстанс
 - Создать в этой приватной подсети виртуалку с внутренним IP, подключиться к ней через виртуалку, созданную ранее и убедиться что есть доступ к интернету
 
+---
+
 Ресурсы создаются из директории [terraform](terraform/), а именно [сеть](terraform/network.tf), [виртуалки](terraform/vpc.tf).
+
+Созданные ресурсы:
+
+![vms](https://github.com/malkops/nah/assets/44001733/470e92bc-9053-4c51-96a9-2df72e82957a)
+
+![net](https://github.com/malkops/nah/assets/44001733/d9bb7d53-8c20-46ee-ad75-adebee5cdbd5)
+
+Доступ в интернет с двух машин:
+
+public:
+
+![vm1](https://github.com/malkops/nah/assets/44001733/d64f91a4-8c6c-46a5-9df0-a4a72d07f878)
+
+private:
+
+![vm2](https://github.com/malkops/nah/assets/44001733/e034d946-2de3-4fd8-84ee-4bd89551dd3f)
